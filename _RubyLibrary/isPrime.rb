@@ -1,4 +1,4 @@
-def prime?(n)
+def isPrime(n)
   return true if n == 2 || n == 3
   return false if n < 2 || n % 2 == 0 || n % 3 == 0
   step_flag = true
