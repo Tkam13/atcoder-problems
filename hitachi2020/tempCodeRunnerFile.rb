@@ -1,0 +1,1 @@
+ts = m.times.map{gets.chomp.split.map(&:to_i)}
