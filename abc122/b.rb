@@ -1,14 +1,14 @@
-ss = gets.chomp.chars
-ans = []
-count = 0
-flag = false
-ss.each do |s|
-  if s =="A" || s == "C" || s == "G" || s == "T"
-    count += 1
+s = gets.chomp
+ans = 0
+cnt = 0
+(0..s.size-1).each do |i|
+  if s[i] == "A" || s[i] == "G" || s[i] == "C" || s[i] == "T"
+    cnt += 1
   else
-    ans << count
-    count = 0
+    ans = cnt if ans < cnt
+    cnt = 0
   end
 end
-ans << count
-puts ans.max
+ans = cnt if ans < cnt
+
+puts ans
