@@ -1,12 +1,9 @@
-n,m = gets.chomp.split.map(&:to_i)
-mod = 10**9 + 7
-d = (1..n).inject{|sum, x|sum * x % mod }
-s = (1..m).inject{|sum, x|sum * x % mod }
-
-if (n - m).abs == 0
-  puts d * s * 2 % mod
-elsif (n - m).abs == 1
-  puts d * s % mod
-else
-  puts 0
+n,m = gets.chomp.split.map(&:to_i).sort
+MOD = 10**9+7
+ans = 0
+if m - n <= 1
+  ans = (1..n).inject{|sum,x| sum * x % MOD} * (1..m).inject{|sum,x| sum * x % MOD} % MOD
+  ans *= 2 if m == n
 end
+
+puts ans % MOD

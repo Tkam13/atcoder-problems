@@ -1,15 +1,16 @@
 n,k = gets.chomp.split.map(&:to_i)
 xs = gets.chomp.split.map(&:to_i)
-ans = xs.inject{|sum,x| sum + x.abs}
-(0..n-k).each do |i|
-    u = xs[i]
-    v = xs[i + k - 1]
-    if (u < 0 && v < 0) || (u > 0 && v > 0)
-        ans = [ans , [u.abs , v.abs].max ].min
-    else
-        ans = [ans , 2 * u.abs + v.abs , u.abs + 2 * v.abs].min
-    end
+ans = 10 ** 18
+
+(n-k+1).times do |i|
+	l = xs[i]
+	r = xs[i+k-1]
+	if l < 0 && r > 0
+		dist = [l.abs * 2 + r, l.abs + r * 2].min
+	else
+		dist = [l.abs , r.abs].max
+	end
+	ans = dist if ans > dist
 end
 
 puts ans
-

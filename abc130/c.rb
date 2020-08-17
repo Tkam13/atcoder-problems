@@ -1,5 +1,7 @@
-w,h,x,y = gets.chomp.split.map(&:to_i)
+w,h,x,y = gets.chomp.split.map(&:to_f)
 flag = 0
-s = w*h/2.to_f
-flag = (w/2.to_f == x && h/2.to_f == y) ? 1 : 0
-puts "#{s} #{flag}"
+if x == w/2 && y == h/2
+	flag = 1
+end
+
+puts "#{w*h/2} #{flag}"

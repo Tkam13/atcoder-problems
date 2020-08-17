@@ -1,11 +1,10 @@
-s = gets.chomp.chars
+s = gets.chomp
 t = gets.chomp
 flag = false
-s.size.times do 
-  s.unshift(s.pop)
-  if s.join == t
-    flag = true
-    break;
-  end
+n = s.size
+n.times do 
+  s = s[-1] + s[0..-2]
+  flag = true if s == t
 end
+
 puts flag ? "Yes" : "No"

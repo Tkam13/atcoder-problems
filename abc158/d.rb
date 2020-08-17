@@ -1,27 +1,23 @@
 s = gets.chomp.chars
 q = gets.to_i
-querys = q.times.map{gets.chomp.split}
-rev_cnt = 0
-querys.each do |t,f,c|
-  if t == "1"
-    rev_cnt += 1
-  else
-    if rev_cnt.even?
-      if f == "1"
-        s.unshift(c)
-      else
-        s.push(c)
-      end
+qs = q.times.map{gets.chomp.split}
+
+reverse = false
+qs.each do |i,f,c|
+  if i == "1"
+    reverse = !reverse
+  end
+  if i == "2"
+    if (reverse && f == "2") || (!reverse && f == "1")
+      s.unshift(c)
     else
-      if f == "1"
-        s.push(c)
-      else
-        s.unshift(c)
-      end
+      s.push(c)
     end
   end
 end
-if rev_cnt.odd?
+
+if reverse
   s.reverse!
 end
+
 puts s.join

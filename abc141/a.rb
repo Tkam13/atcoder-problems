@@ -1,9 +1,8 @@
 s = gets.chomp
 if s == "Sunny"
-  ans = "Cloudy"
+  puts "Cloudy"
 elsif s == "Cloudy"
-  ans = "Rainy"
+  puts "Rainy"
 else
-  ans = "Sunny"
+  puts "Sunny"
 end
-puts ans

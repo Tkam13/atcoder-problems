@@ -1,22 +1,19 @@
-s = gets.chomp
-t = s.size - 1
-(2 ** t).times do |i|
-  temp = s.dup
-  ans = temp.slice!(0,1)
-  sum = ans.to_i
-  t.times do |j|
-    num = temp.slice!(0,1)
+nums = gets.chomp.split("").map(&:to_i)
+
+(2**3).times do |i|
+  sum = nums[0]
+  ans = [nums[0]]
+  3.times do |j|
     if i[j] == 0
-      ans += "-#{num}"
-      sum -= num.to_i
+      sum -= nums[j+1]
+      ans << "-" + "#{nums[j+1]}"
     else
-      ans += "+#{num}"
-      sum += num.to_i
+      sum += nums[j+1]
+      ans << "+" + "#{nums[j+1]}"
     end
   end
-  ans += "=7"
   if sum == 7
-    puts ans
+    puts ans.join + "=7"
     break
   end
 end

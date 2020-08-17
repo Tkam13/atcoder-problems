@@ -1,21 +1,21 @@
 n,m = gets.chomp.split.map(&:to_i)
-ts = m.times.map{gets.chomp.split.map(&:to_i)}
-flag = Array.new(n,0)
-ans = Array.new(n,0)
-ts.each do |s,c|
-  if flag[s-1] == 1 && ans[s-1] != c
-    ans = [-1]
+s,c = m.times.map{gets.chomp.split.map(&:to_i)}.transpose
+ans = -1
+
+(0..1000).each do |i|
+  next if i.to_s.size != n
+  flag = true
+  m.times do |j|
+    if i.to_s[s[j] - 1] != c[j].to_s
+      flag = false
+      break
+    end
+  end
+
+  if flag
+    ans = i
     break
   end
-  if n != 1 && s == 1 && c == 0
-    ans = [-1]
-    break
-  end
-  flag[s-1] = 1
-  ans[s-1] = c
 end
 
-if n !=1 && ans[0] == 0
-  ans[0] = 1
-end
-puts ans.join
+puts ans

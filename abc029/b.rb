@@ -1,0 +1,1 @@
+puts 12.times.map{gets.chomp}.count{|s| s.include?("r")}

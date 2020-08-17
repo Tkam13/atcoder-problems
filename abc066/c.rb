@@ -1,16 +1,14 @@
 n = gets.to_i
 as = gets.chomp.split.map(&:to_i)
-b = []
+ans = []
+flag = false
 as.each_with_index do |a,i|
-  if i % 2 == 0
-    b.push(a)
+  if i.even?
+    ans.push(a)
   else
-    b.unshift(a)
+    ans.unshift(a)
   end
+  flag = !flag
 end
 
-if as.size.odd?
-  puts b.reverse.join(" ")
-else
-  puts b.join(" ")
-end
+puts flag ? ans.reverse.join(" ") : ans.join(" ")

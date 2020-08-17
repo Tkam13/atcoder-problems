@@ -44,7 +44,9 @@ end
 
 ## 繰り返し2乗法
 def mod_pow(base,n,mod)
-  if n == 1
+  if n == 0
+    res = 1
+  elsif n == 1
     res = base
   elsif n % 2 == 0
     res = mod_pow(base,n/2,mod) ** 2 % mod

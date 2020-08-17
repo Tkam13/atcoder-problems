@@ -6,3 +6,13 @@ if left >= right
 else
   puts left
 end
+
+# a,b = gets.chomp.split.map(&:to_i)
+# ans = []
+# (10*b..10*(b+1)).each do |i|
+#   ((12.5*a).ceil..(12.5*(a+1)).ceil).each do |j|
+#     ans << i if i == j
+#   end
+# end
+
+# puts ans.empty? ? -1 : ans.min

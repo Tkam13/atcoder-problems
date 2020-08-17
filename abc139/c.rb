@@ -1,16 +1,15 @@
 n = gets.to_i
-hs = gets.chomp.split.map(&:to_i).reverse
-ans = []
+hs = gets.chomp.split.map(&:to_i)
+ans = 0
 cnt = 0
-current = hs.shift
-hs.each do |h|
-  if h >= current
+
+n.times do |i|
+  if i != n - 1 && hs[i] >= hs[i+1]
     cnt += 1
   else
-    ans << cnt
+    ans = cnt if ans < cnt
     cnt = 0
   end
-  current = h
 end
-ans << cnt
-puts ans.max
+
+puts ans

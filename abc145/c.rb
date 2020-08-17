@@ -1,12 +1,14 @@
 n = gets.to_i
-ps = n.times.map{gets.chomp.split.map(&:to_f)}
+pos = n.times.map{gets.chomp.split.map(&:to_f)}
+
 sum = 0
-(0..n-1).to_a.permutation.each do |a|
-  dist = 0
-  (1..a.size-1).each do|i|
-    dist += Math.sqrt((ps[a[i-1]][0] - ps[a[i]][0]) ** 2 + (ps[a[i-1]][1] - ps[a[i]][1]) ** 2)
+cnt = 0
+[*0..n-1].permutation(n) do |a|
+  cnt += 1
+  a.each_cons(2) do |i,j|
+    dist = (pos[i][0] - pos[j][0]) ** 2 + (pos[i][1] - pos[j][1]) ** 2
+    sum += Math.sqrt(dist)
   end
-  sum += dist
 end
 
-puts sum / (1..n).inject(:*)
+puts sum / cnt

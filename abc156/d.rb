@@ -1,16 +1,5 @@
 n,a,b = gets.chomp.split.map(&:to_i)
 MOD = 10 ** 9 + 7
-def mod_pow(base,n,mod)
-  if n == 1
-    res = base
-  elsif n % 2 == 0
-    res = mod_pow(base,n/2,mod) ** 2 % mod
-  else
-    res = mod_pow(base,n-1,mod) * base % mod
-  end
-  res
-end
-
 require 'openssl'
 def combination_mod(n,k,mod)
   if n < k || (n < 0 || k < 0)
@@ -26,9 +15,16 @@ def combination_mod(n,k,mod)
   end
 end
 
-def mod(a,mod)
-  (a % mod + mod) % mod
+def mod_pow(base,n,mod)
+  res = 1
+  if n <= 0
+    res = 1
+  elsif n % 2 == 0
+    res = mod_pow(base,n/2,mod) ** 2
+  else
+    res = base * mod_pow(base,n-1,mod)
+  end
+  res % mod
 end
 
-all = mod_pow(2,n,MOD) - 1
-puts mod(all - combination_mod(n,a,MOD) - combination_mod(n,b,MOD),MOD)
+puts (mod_pow(2,n,MOD) - 1 - combination_mod(n,a,MOD) - combination_mod(n,b,MOD)) % MOD

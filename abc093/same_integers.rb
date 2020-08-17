@@ -1,28 +1,10 @@
-a,b,c = gets.chomp.split.map(&:to_i)
-@cnt = 0
-def max(a,b,c)
-  max = [a,b,c].max
-  [a,b,c].each do |i|
-    @cnt += (max - i)/2
-  end
-end
+a,b,c = gets.chomp.split.map(&:to_i).sort
+diff = (c-a) + (c-b)
 
-if a%2 == b%2 && b%2 == c%2
-   max(a,b,c)
+if c % 2 == a % 2 && c % 2 == b % 2
+  puts diff/2 
+elsif a % 2 == b % 2
+  puts (diff-2)/2 + 1
 else
-  @cnt += 1
-  if a%2 == b%2
-    a += 1
-    b += 1
-    max(a,b,c)
-  elsif b%2 == c%2
-    b += 1
-    c += 1
-    max(a,b,c)
-  else
-    c += 1
-    a += 1
-    max(a,b,c)
-  end
+  puts (diff+1)/2 + 1
 end
-puts @cnt

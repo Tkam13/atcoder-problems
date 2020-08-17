@@ -1,12 +1,10 @@
 n = gets.to_i
 as = n.times.map{gets.to_i}
-copy = as.sort.reverse
-max1 = copy[0]
-max2 = copy[1]
+second,max = as.sort[-2..-1]
 as.each do |a|
-  if a == max1
-    puts max2
+  if a == max
+    puts second
   else
-    puts max1
+    puts max
   end
 end

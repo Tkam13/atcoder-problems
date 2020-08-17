@@ -1,24 +1,35 @@
 class UnionFind
-  def initialize n
-    @rank = Array.new(n,0)
-    @parent = Array.new(n,&:itself)
+	def initialize n
+		@parent = Array.new(n,&:itself)
+		@rank = Array.new(n,0)
+		@size = n
+	end
+
+	def get_parent n
+		@parent[n] == n ? n : get_parent(@parent[n])
+	end
+
+	def unite x,y
+		x = get_parent(x)
+		y = get_parent(y)
+		if x != y
+			if @rank[x] < @rank[y]
+				@parent[x] = y
+			else
+				@parent[y] = x
+				@rank[x] += 1 if @rank[x] == @rank[y]
+			end
+			@size -= 1
+		end
+  end
+  
+  def same_parent? x,y
+    get_parent(x) == get_parent(y)
   end
 
-  def get_root x
-    @parent[x] == x ? x : get_root(@parent[x])
-  end
-
-  def unite x,y
-    x,y = get_root(x),get_root(y)
-    return if x == y
-    x,y = y,x if @rank[x] < @rank[y]
-    @parent[y] = x
-    @rank[x] += 1 if @rank[x] == @rank[y]
-  end
-
-  def same_root? x,y
-    get_root(x) == get_root(y)
-  end
+	def size
+		@size
+	end
 end
 
 array = [[0,1],[3,4],[1,2],[0,4]]

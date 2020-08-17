@@ -1,16 +1,14 @@
 n = gets.to_i
-hs = gets.chomp.split.map(&:to_i).reverse
-ans = "Yes"
-present = hs[0]
-hs.each do |h|
-  if h - present > 1
-    ans = "No"
-    break
-  end
-  if h - present == 1
-    present = h-1
-  else
-    present = h
+hs = gets.chomp.split.map(&:to_i)
+
+n.times do |i|
+  if i == 0 || hs[i-1] < hs[i]
+    hs[i] -= 1
   end
 end
-puts ans
+
+if hs.each_cons(2).all?{|a,b| a <= b}
+  puts "Yes"
+else
+  puts "No"
+end
